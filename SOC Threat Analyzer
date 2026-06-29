@@ -1,0 +1,82 @@
+#======================
+#SOC Threat Analyzer
+#======================
+
+
+#Event data
+
+events = ["malware", "phishing", "normal traffic"]
+
+#
+
+#Function to calculate threat score
+
+
+def calculate_threat():
+
+    risk_score = 0
+
+
+    #For loop to process events
+
+    for event in events:
+
+        print("Processing event:", event)
+
+        if event == "malware":
+            risk_score = risk_score + 10
+
+        elif event == "phishing":
+            risk_score = risk_score + 5
+
+        else:
+            risk_score = risk_score + 1
+
+    return risk_score
+
+
+#Function to determine severity level
+
+def severity_level(risk_score):
+
+    if risk_score >= 10:
+        return "High severity alert"
+
+    elif risk_score >= 5:
+        return "Medium severity alert"
+
+    else:
+        return "Low severity alert"
+
+
+#Function to determine Action
+
+
+def action(risk_score):
+
+    if risk_score >= 10:
+        return "Quarantine"
+
+    elif risk_score >= 5:
+        return "Block"
+
+    else:
+        return "Monitor"
+
+
+#Main function
+
+def main():
+
+    risk_score = calculate_threat()
+
+    print("Final risk score:", risk_score)
+
+    print("Severity level:", severity_level(risk_score))
+
+    print("Action:", action(risk_score))
+
+
+main()
+
+    
