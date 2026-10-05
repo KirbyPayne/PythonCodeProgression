@@ -1,0 +1,72 @@
+logins = [
+    {
+        "username": "admin",
+        "password": "admin1234",
+        "ip_address": "192.1.1.1",
+        "login_attempts": 3,
+        "success": True
+    },
+
+    {
+        "username": "user34",
+        "password": "user12345",
+        "ip_address": "192.1.34.5",
+        "login_attempts": 2,
+        "success": True
+    },
+
+    {
+        "username": "test12345",
+        "password": "test543231",
+        "ip_address": "154.67.89.17",
+        "login_attempts": 5,
+        "success": False
+    }
+]
+
+
+def normal_behavior(success, login_attempts):
+    if login_attempts <= 3 and success == True:
+        return "Normal Login Behavior"
+
+    elif login_attempts > 3 and success == False:
+        return "Abnormal Login Behavior"
+
+    else:
+        return "Unknown"
+
+
+def bruteforce_attack(login):
+    if login["login_attempts"] > 3 and login["success"] == False:
+        return "Possible Brute Force Attack"
+    else:
+        return "None"
+
+
+successful_logins = 0
+failed_logins = 0
+
+for login in logins:
+
+    behavior = normal_behavior(
+        login["success"],
+        login["login_attempts"]
+    )
+
+    attack = bruteforce_attack(login)
+
+    if behavior == "Normal Login Behavior":
+        successful_logins += 1
+
+    elif behavior == "Abnormal Login Behavior":
+        failed_logins += 1
+
+    print(
+        login["username"],
+        login["password"],
+        attack,
+        behavior
+    )
+
+print("Successful logins:", successful_logins)
+print("Failed logins:", failed_logins)
